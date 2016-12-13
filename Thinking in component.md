@@ -11,6 +11,7 @@
 │  ├─扁平访问
 │  ├─组件嵌套
 │  ├─组件界限
+|  ├─按需加载
 │  └─递归组件
 └─3.表单验证
     └─动态表单的验证
@@ -111,7 +112,7 @@ events: {
 
 ``` js
 // 打包输出 good (´▽`ʃ♡ƪ)
-import {vSpin,message,vAlert} from "dl-design-admin";
+import {vSpin,vAlert,message} from "dl-design-admin";
 import * as utl from "../../common/widgets/utils";
 // 独立组件 bad (╯°Д°)╯︵ ┻━┻
 import brand from "../../common/widgets/brand";
@@ -121,6 +122,20 @@ import pagination from "../../common/widgets/pagination.vue";
 import fileUploader from "../../common/widgets/fileUploader";
 import vueAnimatedList from "../../../lib/vue-animated-list";
 import multipleareas from "../../common/widgets/multipleareas.vue";
+```
+
+组织成库通过入口文件打包输出。
+例子：
+``` js
+// 输出
+import components1 from "./components1"
+let components = {
+  components1
+}
+module.exports = components;
+
+// 获得
+import {components1} from "path/components";
 ```
 
 ## Vue生命周期 与 数据生命周期
