@@ -118,8 +118,43 @@ watch: {
 例如：优惠券/红包等动态表单的校验。
 ![imgs](./imgs/4.png)
 
-``` js
+``` html
+<!-- 普通表单 -->
+<input type="number" class="vd" v-model="num" v-validate:v1="isInteger">
+<!-- 动态表单 -->
+<ul>
+  <li v-for="item in inputList" transition="item">
+    <input type="number" class="vd" v-model="item.num" :field="'vd' + $index" v-validate="isInteger">
+  </li>
+</ul>
+```
 
+``` js
+// ...
+data:() => {
+  num: '',
+  inputList: []
+},
+methods: {
+  addInputGroup() {
+    this.inputList.push({
+      num: ''
+    })
+  }
+},
+route : {
+  activate:(transition) => {
+    // 添加一组数据到表单队列
+    this.addInputGroup();
+    transition.next();
+  },
+  deactivate:(transition) => {
+    // 初始化数据
+    this.$data = this.$options.data();
+    transition.next();
+  }
+}
+// ...
 ```
 
 ## 条件渲染
