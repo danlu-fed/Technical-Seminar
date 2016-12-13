@@ -32,7 +32,7 @@ menu1 只应该关心当前 children 中谁是当前高亮项（active），而�
 
 例如：分页组件、商品分类组件、树形选择组件等。
 
-![imgs](./#1.png)
+![imgs](./imgs/#1.png)
 
 * 错误
 ``` html
