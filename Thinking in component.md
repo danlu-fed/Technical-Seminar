@@ -86,15 +86,42 @@ watch: {
 
 > 能使用操作子组件状态完成的事情绝不使用`refs`
 
+``` html
+<brand v-ref:brand></brand>
+```
+
+``` js
+events: {
+  // 品类列表被切换触发品牌分类更新
+  treeSelectChange(selectList) {
+    this.$refs.brand.updata(selectList.code);
+  }
+},
+```
+
 #### 递归组件
 
 > 这里只是提一下，用到的不多，但是在处理一些树形结构的数据时会用到，例如树形选择，树形展示等等。
 
-``` html
+这里有一个官方的例子：[tree view](http://vuejs.org/v2/examples/tree-view.html)
 
+#### 按需加载
+
+> 打包输出 VS 独立组件
+
+``` js
+// 打包输出 good (´▽`ʃ♡ƪ)
+import {vSpin,message,vAlert} from "dl-design-admin";
+import * as utl from "../../common/widgets/utils";
+// 独立组件 bad (╯°Д°)╯︵ ┻━┻
+import brand from "../../common/widgets/brand";
+import categoryTree from "../../common/widgets/categoryTree.vue";
+import associate from "../../common/widgets/associate.vue";
+import pagination from "../../common/widgets/pagination.vue";
+import fileUploader from "../../common/widgets/fileUploader";
+import vueAnimatedList from "../../../lib/vue-animated-list";
+import multipleareas from "../../common/widgets/multipleareas.vue";
 ```
-
-想了一下这里还是不展开讲了比较复杂，可以放到下一期压轴。
 
 ## Vue生命周期 与 数据生命周期
 
